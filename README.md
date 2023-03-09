@@ -5,3 +5,4 @@ Highly Customizable
 Dependencies:
 ox-lib
 ox-inventory
+qb-target
