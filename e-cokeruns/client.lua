@@ -1,6 +1,7 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local hasJob = false
 local cooldown = false
+local created_ped
 
 CreateNPC = function()
     created_ped = CreatePed(5, GetHashKey(Config.Ped) , Config.PedCoords, false, true)
@@ -77,17 +78,12 @@ RegisterNetEvent('e-cokeruns:client:takeJob',function ()
     end
 end)
 
-    exports['qb-target']:AddTargetModel(Config.Ped, {
+    exports['qb-target']:AddTargetEntity(created_ped, {
         options = {
             {
                 event = "e-cokeruns:client:takeJob",
                 icon = "fas fa-sack-dollar",
                 label = "Take a job",
-                canInteract = function()
-                    if hasJob == false and GetEntityCoords(created_ped).x == Config.PedCoords.x and GetEntityCoords(created_ped).y == Config.PedCoords.y then
-                        return hasJob == false and GetEntityCoords(created_ped).x == Config.PedCoords.x and GetEntityCoords(created_ped).y == Config.PedCoords.y
-                    end
-                end,
             },
         },
         distance = 2.5,
